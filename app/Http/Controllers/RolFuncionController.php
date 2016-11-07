@@ -105,9 +105,9 @@ class RolFuncionController extends Controller
         $nuevaFuncion->save();
         return view('exito');
     }
-
+/*
     public function usuarios()
     public function editarUsuarios()
     public function eliminarUsuarios()
-    public function guardarUsuarios()
+    public function guardarUsuarios()*/
 }
