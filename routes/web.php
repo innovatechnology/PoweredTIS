@@ -33,3 +33,18 @@ Route::get('usuarios', 'RolFuncionController@usuarios');
 Route::get('usuarios/editar', 'RolFuncionController@editarUsuarios');
 Route::post('usuarios/eliminar', 'RolFuncionController@eliminarUsuarios');
 Route::post('usuarios/guardar', 'RolFuncionController@guardarUsuarios');
+
+Route::resource('blog','BlogController');
+Route::get('/', function () {
+    return redirect('/blog');
+});
+
+Route::get('blog', 'BlogController@index');
+Route::get('blog/{slug}', 'BlogController@showPost');
+Route::get('blog/{id}/edit', 'BlogController@edit');
+Route::get('blog/store', 'BlogController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::resource('admin/users', 'Admin\\UsersController');
+>>>>>>> develop
