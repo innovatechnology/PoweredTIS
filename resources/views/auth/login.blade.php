@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('blog.app')
 
 @section('content')
 <div class="container">
@@ -42,7 +42,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> Recordarme
                                     </label>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
+                                    ¿Desea Registrarse?
                                 </a>
                             </div>
                         </div>
