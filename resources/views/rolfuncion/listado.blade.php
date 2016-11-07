@@ -4,22 +4,21 @@
 	</head>
 	<body>
 		<?php
-		for($i = 0; i < count($elementos); i++)
+		for($i = 0; $i < count($elementos); $i++)
 		{
-			echo "<a href = \"";
-			if(strcmp($tipo, "roles"))
+			if(strcmp($tipo, "roles") == 0)
 			{
-				echo "roles/editar/" + $elementos[i];
+				$cadena = "<a href = \"roles/editar/" . $elementos[$i]['nombre_rol'] . "\">" . $elementos[$i]['nombre_rol'] . "</a>" . "<br>";
 			}else{}
-			if(strcmp($tipo, "funciones"))
+			if(strcmp($tipo, "funciones") == 0)
 			{
-				echo "funciones/editar/" + $elementos[i];
-			}else{}
-			echo "\">" + $elementos[i] + "</a>";
-			echo "<br>";
+				$cadena = "<a href = \"funciones/editar/" . $elementos[$i]['nombre_funcion'] . "\">" . $elementos[$i]['nombre_funcion'] . "</a>" . "<br>";
+			}
+			echo $cadena;
 		}
 		?>
-		<form method = "post" action = "{{$tipo}}/">
+		<form method = "post" action = "/{{$tipo}}/crear">
+			<input type = "submit" value = "Crear Nuevo">
 		</form>
 	</body>
 </html>

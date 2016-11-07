@@ -8,7 +8,8 @@ class UsuarioRol extends Model
 {
     //
     protected $table = 'usuario_rol';
-    protected $primaryKey = 'usuario_idusuario, rol_idrol';
+    protected $primaryKey = 'usuario_idusuario';
+    //protected $primaryKey = ['usuario_idusuario', 'rol_idrol'];
     public $timestamps = false;
 
     public function usuario()

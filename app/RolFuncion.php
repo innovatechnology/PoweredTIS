@@ -8,7 +8,8 @@ class RolFuncion extends Model
 {
     //
     protected $table = 'rol_funcion';
-    protected $primaryKey = 'rol_idrol, funcion_idfuncion';
+    protected $primaryKey = 'rol_idrol';
+    //protected $primaryKey = 'rol_idrol, funcion_idfuncion';
     public $timestamps = false;
 
     public function rol()
