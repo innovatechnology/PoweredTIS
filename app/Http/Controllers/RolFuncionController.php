@@ -105,9 +105,53 @@ class RolFuncionController extends Controller
         $nuevaFuncion->save();
         return view('exito');
     }
-/*
+
     public function usuarios()
-    public function editarUsuarios()
-    public function eliminarUsuarios()
-    public function guardarUsuarios()*/
+    {
+        $elementos = Usuario::where('alta', true)->get(['login'])->toArray();
+        return view('rolfuncion/usuarios', ['elementos' => $elementos]);
+    }
+    public function editarUsuarios($nombre_usuario)
+    {
+        $usuario = Usuario::where('login', $nombre_usuario)->get()->toArray();
+        $login = $usuario[0]['login'];
+        $nombre = $usuario[0]['nombre'];
+        $roles = Rol::get(['nombre_rol'])->toArray();
+        return view('rolfuncion/editarUsuarios', ['nombre' => $nombre, 'login' => $login, 'roles' => $roles]);
+    }
+    public function eliminarUsuarios($login)
+    {
+        $usuario = Usuario::where('login', $login)->first();
+        $usuario->alta = false;
+        $usuario->save();
+        return view('exito');
+    }
+    public function guardarUsuarios($request)
+    {
+        $usuario = Usuario::where('login', $request->input('correo'))->first();
+        $usuario->nombre = $request->input('nombre');
+        $usuario->password = $request->input('password');
+        $usuario->save();
+        //ahora le colocamos roles a los usuarios
+        $roles = Rol::get(['idrol', 'nombre_rol'])->toArray();
+        //borrando antiguos roles
+        $antiguos = UsuarioRol::where('usuario_idusuario', $usuario->idusuario)->get();
+        for($i = 0; $i < count($antiguos); $i++)
+        {
+            $antiguos[$i]->delete();
+        }
+        for($i = 0; $i < count($roles); $i++)
+        {
+            $tiene = $request->input('' . $roles[$i]['nombre_rol']) !== null;
+            if($tiene)
+            {
+                //significa que tiene  chekeado esta funcion
+                $relacion = new UsuarioRol;
+                $relacion->usuario_idusuario = $usuario->idusuario;
+                $relacion->rol_idrol = $roles[$i]['idrol'];
+                $relacion->save();
+            }else{}
+        }
+        return view('exito');
+    }
 }

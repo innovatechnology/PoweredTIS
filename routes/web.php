@@ -30,10 +30,9 @@ Route::get('funciones/crear', 'RolFuncionController@crearFunciones');
 Route::post('funciones/guardar', 'RolFuncionController@guardarFunciones');
 
 Route::get('usuarios', 'RolFuncionController@usuarios');
-Route::get('usuarios/editar', 'RolFuncionController@editarUsuarios');
-Route::post('usuarios/eliminar', 'RolFuncionController@eliminarUsuarios');
+Route::get('usuarios/editar/{nombre_usuario}', 'RolFuncionController@editarUsuarios');
+Route::post('usuarios/eliminar/{login}', 'RolFuncionController@eliminarUsuarios');
 Route::post('usuarios/guardar', 'RolFuncionController@guardarUsuarios');
-
 Route::resource('blog','BlogController');
 Route::get('/', function () {
     return redirect('/blog');
@@ -47,4 +46,3 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::resource('admin/users', 'Admin\\UsersController');
->>>>>>> develop
