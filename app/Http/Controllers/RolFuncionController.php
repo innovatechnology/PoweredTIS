@@ -9,6 +9,7 @@ use App\Funcion;
 use App\Sesion;
 use App\UsuarioRol;
 use App\RolFuncion;
+use App\User;
 
 class RolFuncionController extends Controller
 {
@@ -132,6 +133,10 @@ class RolFuncionController extends Controller
         $usuario->nombre = $request->input('nombre');
         $usuario->password = $request->input('password');
         $usuario->save();
+        $user = User::where('email', $request-input('correo'))->first();
+        $user->name = $request->input('nombre');
+        $user->password = $request->input('password');
+        $user->save();
         //ahora le colocamos roles a los usuarios
         $roles = Rol::get(['idrol', 'nombre_rol'])->toArray();
         //borrando antiguos roles
