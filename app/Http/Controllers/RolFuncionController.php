@@ -127,13 +127,13 @@ class RolFuncionController extends Controller
         $usuario->save();
         return view('exito');
     }
-    public function guardarUsuarios($request)
+    public function guardarUsuarios(Request $request)
     {
         $usuario = Usuario::where('login', $request->input('correo'))->first();
-        $usuario->nombre = $request->input('nombre');
+        $usuario->nombre = $request->input('nombre');   
         $usuario->password = $request->input('password');
         $usuario->save();
-        $user = User::where('email', $request-input('correo'))->first();
+        $user = User::where('email', $request->input('correo'))->first();
         $user->name = $request->input('nombre');
         $user->password = $request->input('password');
         $user->save();
