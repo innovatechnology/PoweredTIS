@@ -20,9 +20,9 @@ class Universidad extends Migration
                 $table->string('nombre', 40);
                 $table->string('descripcion', 300);
 
-                $table->dropPrimary('iddepartamento');
+                $table->dropPrimary('idfacultad');
 
-                $table->primary('iddepartamento');
+                $table->primary('idfacultad');
             });
         //departamento
         Schema::create('departamento', function(Blueprint $table)
@@ -39,29 +39,29 @@ class Universidad extends Migration
             });
         //materia
 
-        Schema::create('idmateria', function(Blueprint $table)
+        Schema::create('materia', function(Blueprint $table)
             {
                 $table->increments('idmateria');
                 $table->string('nombre', 40);
                 $table->string('descripcion', 300);
                 $table->integer('departamento_iddepartamento')->unsigned();
 
-                $table->dropPrimary('ididmateria');
+                $table->dropPrimary('idmateria');
 
-                $table->primary('ididmateria');
+                $table->primary('idmateria');
                 $table->foreign('departamento_iddepartamento')->references('iddepartamento')->on('departamento');
             });
         //materia
-        Schema::create('idcarrera', function(Blueprint $table)
+        Schema::create('carrera', function(Blueprint $table)
             {
                 $table->increments('idcarrera');
                 $table->string('nombre', 40);
                 $table->string('descripcion', 300);
                 $table->integer('departamento_iddepartamento')->unsigned();
 
-                $table->dropPrimary('ididcarrera');
+                $table->dropPrimary('idcarrera');
 
-                $table->primary('ididcarrera');
+                $table->primary('idcarrera');
                 $table->foreign('departamento_iddepartamento')->references('iddepartamento')->on('departamento');
             });
     }
@@ -73,6 +73,10 @@ class Universidad extends Migration
      */
     public function down()
     {
-        //
+        //eliminamos todas las tablas
+        Schema::drop('facultad');
+        Schema::drop('departamento');
+        Schema::drop('carrera');
+        Schema::drop('materia');
     }
 }

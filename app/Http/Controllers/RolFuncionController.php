@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Usuario;
 use App\Rol;
 use App\Funcion;
@@ -125,6 +126,7 @@ class RolFuncionController extends Controller
         $usuario = Usuario::where('login', $login)->first();
         $usuario->alta = false;
         $usuario->save();
+        $user = User::where('email', $login)->first();
         return view('exito');
     }
     public function guardarUsuarios(Request $request)
@@ -135,8 +137,11 @@ class RolFuncionController extends Controller
         $usuario->save();
         $user = User::where('email', $request->input('correo'))->first();
         $user->name = $request->input('nombre');
-        $user->password = $request->input('password');
         $user->save();
+        $user->forceFill([
+            'password' => bcrypt($request->input('password')),
+            'remember_token' => Str::random(60),
+        ])->save();
         //ahora le colocamos roles a los usuarios
         $roles = Rol::get(['idrol', 'nombre_rol'])->toArray();
         //borrando antiguos roles
