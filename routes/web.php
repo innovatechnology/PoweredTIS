@@ -31,7 +31,7 @@ Route::post('funciones/guardar', 'RolFuncionController@guardarFunciones');
 
 Route::get('usuarios', 'RolFuncionController@usuarios');
 Route::get('usuarios/editar/{nombre_usuario}', 'RolFuncionController@editarUsuarios');
-Route::post('usuarios/eliminar/{login}', 'RolFuncionController@eliminarUsuarios');
+Route::get('usuarios/eliminar/{login}', 'RolFuncionController@eliminarUsuarios');
 Route::post('usuarios/guardar', 'RolFuncionController@guardarUsuarios');
 
 Route::resource('blog','BlogController');
