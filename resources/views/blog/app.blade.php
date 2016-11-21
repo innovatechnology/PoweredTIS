@@ -35,7 +35,8 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('blog.title') }}
+                    <!--{{ config('blog.title') }}-->
+                    INICIO
                 </a>
             </div>
 
