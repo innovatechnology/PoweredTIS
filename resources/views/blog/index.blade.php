@@ -6,7 +6,7 @@
             <h2>{{ config('blog.title') }}</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('blog.create') }}"> Actividad nuevo Item</a>
+            <a class="btn btn-success" href="/nombramiento"> Actividad nuevo Item</a>
         </div>
     </div>
   </div>

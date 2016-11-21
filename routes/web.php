@@ -43,7 +43,5 @@ Route::get('blog', 'BlogController@index');
 Route::get('blog/{slug}', 'BlogController@showPost');
 Route::get('blog/{id}/edit', 'BlogController@edit');
 Route::get('blog/store', 'BlogController@store');
+Route::get('/nombramiento', 'NombramientoController@index');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-//Route::resource('admin/users', 'Admin\\UsersController');
