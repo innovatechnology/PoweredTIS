@@ -115,7 +115,7 @@ class RolFuncionController extends Controller
     }
     public function editarUsuarios($nombre_usuario)
     {
-        $usuario = Usuario::where('login', $nombre_usuario)->get()->toArray();
+        $usuario = Usuario::where('login', $nombre_usuario)->where('alta', true)->get()->toArray();
         $login = $usuario[0]['login'];
         $nombre = $usuario[0]['nombre'];
         $roles = Rol::get(['nombre_rol'])->toArray();
@@ -123,15 +123,16 @@ class RolFuncionController extends Controller
     }
     public function eliminarUsuarios($login)
     {
-        $usuario = Usuario::where('login', $login)->first();
+        $usuario = Usuario::where('login', $login)->where('alta', true)->first();
         $usuario->alta = false;
         $usuario->save();
         $user = User::where('email', $login)->first();
+        $user->delete();
         return view('exito');
     }
     public function guardarUsuarios(Request $request)
     {
-        $usuario = Usuario::where('login', $request->input('correo'))->first();
+        $usuario = Usuario::where('login', $request->input('correo'))->where('alta', true)->first();
         $usuario->nombre = $request->input('nombre');   
         $usuario->password = $request->input('password');
         $usuario->save();
