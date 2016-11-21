@@ -51,7 +51,19 @@ class Universidad extends Migration
                 $table->primary('idmateria');
                 $table->foreign('departamento_iddepartamento')->references('iddepartamento')->on('departamento');
             });
-        //materia
+        //TABLA materia_grupo
+        Schema::create('materia_grupo', function(Blueprint $table)
+            {
+                $table->increments('idmateria_grupo');
+                $table->integer('materia_idmateria')->unsigned();
+                $table->integer('idgrupo')->unsigned();
+
+                $table->dropPrimary('idmateria_grupo');
+
+                $table->primary('idmateria_grupo');
+                $table->foreign('materia_idmateria')->references('idmateria')->on('materia');
+            });
+        //carrera
         Schema::create('carrera', function(Blueprint $table)
             {
                 $table->increments('idcarrera');
@@ -63,6 +75,32 @@ class Universidad extends Migration
 
                 $table->primary('idcarrera');
                 $table->foreign('departamento_iddepartamento')->references('iddepartamento')->on('departamento');
+            });
+
+        //nombramiento
+        Schema::create('nombramiento', function(Blueprint $table)
+            {
+                $table->increments('idnombramiento');
+                $table->integer('iddocente')->unsigned();
+                $table->integer('idmateria_grupo')->unsigned();
+
+                $table->dropPrimary('idnombramiento');
+
+                $table->primary('idnombramiento');
+                $table->foreign('idmateria_grupo')->references('idmateria_grupo')->on('materia_grupo');
+            });
+
+        //docente
+        Schema::create('docente', function(Blueprint $table)
+            {
+                $table->increments('iddocente');
+                $table->string('nombre', 90);
+                $table->string('Titulo', 300);
+                $table->string('Diploma Academico', 200);
+
+                $table->dropPrimary('iddocente');
+
+                $table->primary('iddocente');
             });
     }
 
@@ -78,5 +116,8 @@ class Universidad extends Migration
         Schema::drop('departamento');
         Schema::drop('carrera');
         Schema::drop('materia');
+        Schema::drop('docente');
+        Schema::drop('nombramiento');
+        Schema::drop('materia_grupo');
     }
 }
