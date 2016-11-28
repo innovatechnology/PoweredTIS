@@ -5,6 +5,7 @@
 			<div class="panel-heading">Formulario de Nombramiento</div>
 	            <div class="panel-body">
 	                <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+	                {{ csrf_field() }}
 	                    <div class="form-group{{ $errors->has('doc_name') ? ' has-error' : '' }}">
 	                        <label for="doc_name" class="col-md-4 control-label">Nombre del docente</label>
 	                        <div class="col-md-6">

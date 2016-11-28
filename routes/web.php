@@ -44,4 +44,10 @@ Route::get('blog/{slug}', 'BlogController@showPost');
 Route::get('blog/{id}/edit', 'BlogController@edit');
 Route::get('blog/store', 'BlogController@store');
 Route::get('/nombramiento', 'NombramientoController@index');
+Route::get('/seguimiento', 'SeguimientoController@index');
 Auth::routes();
+
+Route::post('/exito', function()
+	{return view('exito');
+	;
+});

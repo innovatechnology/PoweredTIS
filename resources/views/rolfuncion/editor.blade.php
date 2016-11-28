@@ -3,6 +3,7 @@
 		<title>Datos de {{$tipo}}</title>
 	</head>
 	<body>
+			
 		<form method = "post" action = "/{{$tipo}}/guardar">
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			Nombre: <input type = "text" name = "nombre">

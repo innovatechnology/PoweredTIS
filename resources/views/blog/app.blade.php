@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('blog.title') }}</title>
+
+     <!--title>holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</title-->
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -21,6 +23,15 @@
     </script>
 </head>
 <body>
+    <header>
+            <div>
+            <img src="logoa2.png"  />
+                <!--h1> cabeza </h1-->
+            
+            </div>
+    
+    </header>
+       
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -60,7 +71,7 @@
 
                             <ul class="dropdown-menu" role="menu">
 
-                                <li><a href="{{ url('/usuarios') }}">Registro</a></li>
+                                <li><a href="{{ url('/usuarios') }}">Usuarios</a></li>
                         
                                 <li>
                                     <a href="{{ url('/logout') }}"
@@ -80,10 +91,18 @@
             </div>
         </div>
     </nav>
-
+    
     @yield('content')
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <footer>
+        <div >
+            <p size=1>Dirección: c. sucre #1001-----
+                Teléfono: 4278900----
+                Email: innovatech.bo@gmail.com
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

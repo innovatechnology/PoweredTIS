@@ -3,7 +3,25 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-0">
+            <div class="panel panel-default">
+                 <div class="panel-heading">Menu</div>
+                 <div class="panel-body">
+                            <a href="http://localhost:8000/blog" >Pagina de inicio</a>
+                          <p> </p> 
+                          <a href="http://localhost:8000/nombramiento">-Nombramiento</a>
+                          <p> </p> 
+                          <a href="http://localhost:8000/seguimiento"> -Seguimiento</a>
+                          <p> </p> 
+                          <a href="http://localhost:8000/usuarios" >Usuarios</a>
+                 
+                  </div>
+            </div>
+          </div>
+
+
+
+        <div class="col-md-8 col-md-offset-0">
             <div class="panel panel-default">
                 <div class="panel-heading">Lista de usuarios</div>
                 <div class="panel-body">
@@ -30,6 +48,22 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-2 col-md-offset-0">
+            <div class="panel panel-default">
+                 <div class="panel-heading">Paginas Amigas</div>
+                 <div class="panel-body">
+                            <a href="http://www.cs.umss.edu.bo/" >cs.umss</a>
+                          <p> </p> 
+                          <a href="http://fcyt.umss.edu.bo/" >Fcyt</a>
+                          <p> </p> 
+                          <a href="http://websis.umss.edu.bo/"> Websis</a>
+                          <p> </p> 
+                          <a href="http://enlinea.umss.edu.bo/" >Moodle</a>
+                 
+                  </div>
     </div>
+</div>
+
+</div>
 </div>
 @endsection
