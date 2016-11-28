@@ -8,7 +8,7 @@
                 <div class="panel-heading">ventana de usuario</div>
 
                 <div class="panel-body">
-                    BIENVENIDO AQUI ESTARAN TUS ACTIVIDADES DE USUARIO GRACIAS
+                    La operacion fue completada con exito!
                 </div>
             </div>
         </div>
