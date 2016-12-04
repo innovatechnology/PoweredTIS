@@ -44,7 +44,11 @@ class Universidad extends Migration
                 $table->increments('idmateria');
                 $table->string('nombre', 40);
                 $table->string('descripcion', 300);
+<<<<<<< HEAD
                  $table->integer('sigla');
+=======
+                $table->string('sigla', 30);
+>>>>>>> e1771b78ef6a96896429a62bba59dca4774667f2
                 $table->integer('departamento_iddepartamento')->unsigned();
 
                 $table->dropPrimary('idmateria');
@@ -53,6 +57,7 @@ class Universidad extends Migration
                 $table->foreign('departamento_iddepartamento')->references('iddepartamento')->on('departamento');
             });
         //TABLA materia_grupo
+        //no estoy seguro de que tan util es esta tabla
         Schema::create('materia_grupo', function(Blueprint $table)
             {
                 $table->increments('idmateria_grupo');
@@ -82,13 +87,14 @@ class Universidad extends Migration
         Schema::create('nombramiento', function(Blueprint $table)
             {
                 $table->increments('idnombramiento');
-                $table->integer('iddocente')->unsigned();
-                $table->integer('idmateria_grupo')->unsigned();
+                $table->integer('seguimiento_idseguimiento')->unsigned();
+                $table->date('fecha_solicitud');
+                $table->date('fecha_nombramiento');
 
                 $table->dropPrimary('idnombramiento');
 
-                $table->primary('idnombramiento');
-                $table->foreign('idmateria_grupo')->references('idmateria_grupo')->on('materia_grupo');
+                $table->primary(['idnombramiento', 'seguimiento_idseguimiento']);
+                $table->foreign('seguimiento_idseguimiento')->references('idseguimiento')->on('seguimiento');
             });
 
         //docente
@@ -96,12 +102,56 @@ class Universidad extends Migration
             {
                 $table->increments('iddocente');
                 $table->string('nombre', 90);
-                $table->string('Titulo', 300);
-                $table->string('Diploma Academico', 200);
+                $table->string('titulo', 300);
+                $table->string('diploma_academico', 200);
 
                 $table->dropPrimary('iddocente');
 
                 $table->primary('iddocente');
+            });
+        Schema::create('seguimiento', function(Blueprint $table)
+            {
+                $table->increments('idseguimiento');
+                $table->integer('docente_iddocente')->unsigned();
+
+                $table->dropPrimary('idseguimiento');
+                
+                $table->primary(['idseguimiento', 'docente_iddocente']);
+                $table->foreign('docente_iddocente')->references('iddocente')->on('docente');
+            });
+        Schema::create('item_seguimiento', function(Blueprint $table)
+            {
+                $table->increments('iditem');
+                $table->integer('seguimiento_idseguimiento')->unsigned();
+                $table->integer('materia_idmateria')->unsigned();
+                $table->integer('horas_teoricas');
+
+                $table->dropPrimary('iditem');
+                
+                $table->primary(['iditem', 'seguimiento_idseguimiento', 'materia_idmateria']);
+                $table->foreign('seguimiento_idseguimiento')->references('idseguimiento')->on('seguimiento');
+                $table->foreign('materia_idmateria')->references('idmateria')->on('materia');
+            });
+        Schema::create('periodo', function(Blueprint $table)
+            {
+                $table->increments('idperiodo');
+            });
+        Schema::create('aula', function(Blueprint $table)
+            {
+                $table->increments('idaula');
+                $table->string('nombre_aula', 10);
+            });
+        Schema::create('hora', function(Blueprint $table)
+            {
+                $table->increments('idhora');
+                $table->integer('periodo_idperiodo')->unsigned();
+                $table->integer('aula_idaula')->unsigned();
+
+                $table->dropPrimary('idhora');
+                
+                $table->primary('idhora');
+                $table->foreign('periodo_idperiodo')->references('idperiodo')->on('periodo');
+                $table->foreign('aula_idaula')->references('idaula')->on('aula');
             });
     }
 
