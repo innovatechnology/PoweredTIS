@@ -11,4 +11,8 @@ class Docente extends Model
     protected $primaryKey = 'iddocente';
     public $timestamps = false;
 
+    public function carrera()
+    {
+    	return $this->hasOne('app/Seguimiento', 'docente_iddocente', 'iddocente');
+    }
 }
