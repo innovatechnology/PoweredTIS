@@ -44,6 +44,7 @@ class Universidad extends Migration
                 $table->increments('idmateria');
                 $table->string('nombre', 40);
                 $table->string('descripcion', 300);
+                 $table->integer('sigla');
                 $table->integer('departamento_iddepartamento')->unsigned();
 
                 $table->dropPrimary('idmateria');
