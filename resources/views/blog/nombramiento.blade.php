@@ -1,7 +1,7 @@
 @extends('blog.app')
 @section('content')
 	<div class="container">
-		<div class="panel panel-default">
+		<div class="panel panel-info">
 			<div class="panel-heading">Formulario de Nombramiento</div>
 	            <div class="panel-body">
 	                <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
@@ -18,82 +18,6 @@
 	                        </div>
 	                    </div>
 
-						<div class="form-group{{ $errors->has('facultad') ? ' has-error' : '' }}">
-	                        <label for="facultad" class="col-md-4 control-label">Facultad</label>
-
-	                        <div class="col-md-6">
-	                            <select class="form-control" id="facultad">
-	                            	<option selected="selected" disabled="disabled">Seleccione Facultad</option>
-			                      	@foreach ($facultades as $facultad)
-    									<option>{{ $facultad -> nombre }}</option>
-								    @endforeach
-								</select>
-	                        </div>
-	                    </div>
-
-						<div class="form-group{{ $errors->has('departamento') ? ' has-error' : '' }}">
-	                        <label for="departamento" class="col-md-4 control-label">Departamento</label>
-
-	                        <div class="col-md-6">
-	                            <select class="form-control" id="departamento">
-	                            	<option selected="selected" disabled="disabled">Seleccione Facultad primero </option>
-	                            	
-								    @foreach ($departamentos as $departamento)
-    									<option>{{ $departamento -> nombre }}</option>
-								    @endforeach
-								</select>
-	                        </div>
-	                    </div>
-	                    <div class="form-group{{ $errors->has('carrera') ? ' has-error' : '' }}">
-	                        <label for="carrera" class="col-md-4 control-label">Carrera</label>
-
-	                        <div class="col-md-6">
-	                            <select class="form-control" id="carrera">
-	                            	<option selected="selected" disabled="disabled">Seleccione Carrera</option>
-		                            	@foreach ($carreras as $carrera)
-	    									<option>{{ $carrera -> nombre }}</option>
-									    @endforeach
-								</select>
-	                        </div>
-	                    </div>
-	                    <div class="form-group{{ $errors->has('diploma') ? ' has-error' : '' }}">
-                            <label for="diploma" class="col-md-4 control-label">Diploma Academico</label>
-
-                            <div class="col-md-6">
-                                <input id="diploma" type="text" class="form-control" name="diploma" value="{{ old('diploma') }}" required autofocus>
-
-                                @if ($errors->has('diploma'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('diploma') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-	                    <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
-                            <label for="titulo" class="col-md-4 control-label">Titulo Provisional</label>
-
-                            <div class="col-md-6">
-                                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" required autofocus>
-
-                                @if ($errors->has('titulo'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('titulo') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('categoria') ? ' has-error' : '' }}">
-	                        <label for="categoria" class="col-md-4 control-label">Categoria del Nombramiento</label>
-
-	                        <div class="col-md-6">
-	                            <select class="form-control" id="categoria">
-	                            	<option selected="selected" disabled="disabled">Seleccione Tipo de Nombramiento</option>
-								    <option>Interino</option>
-								    <option>Invitado</option>
-								    <option>Titular</option>
-								</select>
-	                        </div>
-	                    </div>
 	                    <div class="form-group{{ $errors->has('categoria') ? ' has-error' : '' }}">
 	                        <label for="categoria" class="col-md-4 control-label">Tiempo de dedicacion</label>
 

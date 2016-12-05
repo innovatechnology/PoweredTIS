@@ -1,7 +1,79 @@
 @extends('blog.app')
 @section('content')
+<script src="//code.jquery.com/jquery-latest.js"></script>
+<script>
+function seleccionFacultad()
+{
+    var facultad = $('#facultad option:selected').text();
+    $.ajax({
+        url: '/universidad/departamentos/' + facultad,
+        dataType: 'json',
+        type: 'get',
+        success: function(data)
+        {
+            $('#departamento').html('');
+            $('#departamento').append('<option selected="selected" disabled="disabled" value = "Seleccione Departamento">Seleccione Departamento</option>');
+            for(var i = 0; i < data.length; i++)
+            {
+                var opcion = data[i].nombre;
+                $('#departamento').append('<option value = "' + opcion + '">' + opcion + '</option>');
+            }
+        },
+        error: function()
+        {
+            $('#departamento').html('');
+            $('#departamento').append('<option selected="selected" disabled="disabled" value = "Seleccione Facultad primero">Seleccione Facultad primero</option>');
+        }
+    });
+}
+function seleccionDepartamento()
+{
+    var departamento = $('#departamento option:selected').text();
+    $.ajax({
+        url: '/universidad/carreras/' + departamento,
+        dataType: 'json',
+        type: 'get',
+        success: function(data)
+        {
+            $('#carrera').html('');
+            $('#carrera').append('<option selected="selected" disabled="disabled" value = "Seleccione Carrera">Seleccione Carrera</option>');
+            for(var i = 0; i < data.length; i++)
+            {
+                var opcion = data[i].nombre;
+                $('#carrera').append('<option value = "' + opcion + '">' + opcion + '</option>');
+            }
+        },
+        error: function()
+        {
+            $('#carrera').html('');
+            $('#carrera').append('<option selected="selected" disabled="disabled" value = "Seleccione Departamento primero">Seleccione Departamento primero</option>');
+        }
+    });
+    $.ajax({
+        url: '/universidad/materias/' + departamento,
+        dataType: 'json',
+        type: 'get',
+        success: function(data)
+        {
+            $('#materia').html('');
+            $('#materia').append('<option selected="selected" disabled="disabled" value = "Seleccione Materia">Seleccione Materia</option>');
+            for(var i = 0; i < data.length; i++)
+            {
+                var opcion = data[i].nombre;
+                $('#materia').append('<option value = "' + opcion + '">' + opcion + '</option>');
+            }
+        },
+        error: function()
+        {
+            $('#materia').html('');
+            $('#materia').append('<option selected="selected" disabled="disabled" value = "Seleccione Departamento primero">Seleccione Departamento primero</option>');
+        }
+    });
+}
+</script>
+
     <div class="container">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
             <div class="panel-heading">Formulario de Seguimiento</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
@@ -22,10 +94,10 @@
                             <label for="facultad" class="col-md-4 control-label">Facultad</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="facultad">
+                                <select class="form-control" id="facultad" onchange="seleccionFacultad();return false;">
                                     <option selected="selected" disabled="disabled">Seleccione Facultad</option>
                                     @foreach ($facultades as $facultad)
-                                        <option>{{ $facultad -> nombre }}</option>
+                                        <option value = "{{ $facultad -> nombre }}">{{ $facultad -> nombre }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -35,12 +107,9 @@
                             <label for="departamento" class="col-md-4 control-label">Departamento</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="departamento">
-                                    <option selected="selected" disabled="disabled">Seleccione Facultad primero </option>
+                                <select class="form-control" id="departamento" onchange="seleccionDepartamento()">
+                                    <option selected="selected" disabled="disabled" value = "Seleccione Facultad primero">Seleccione Facultad primero </option>
                                     
-                                    @foreach ($departamentos as $departamento)
-                                        <option>{{ $departamento -> nombre }}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -49,10 +118,8 @@
 
                             <div class="col-md-6">
                                 <select class="form-control" id="carrera">
-                                    <option selected="selected" disabled="disabled">Seleccione Carrera</option>
-                                        @foreach ($carreras as $carrera)
-                                            <option>{{ $carrera -> nombre }}</option>
-                                        @endforeach
+                                    <option selected="selected" disabled="disabled">Seleccione Departamento Primero</option>
+
                                 </select>
                             </div>
                         </div>
@@ -60,11 +127,9 @@
                             <label for="carrera" class="col-md-4 control-label">Materia</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="carrera">
-                                    <option selected="selected" disabled="disabled">Seleccione Materia</option>
-                                        @foreach ($materias as $materia)
-                                            <option>{{ $materia -> nombre }}</option>
-                                        @endforeach
+                                <select class="form-control" id="materia">
+                                    <option selected="selected" disabled="disabled">Seleccione Departamento primero</option>
+
                                 </select>
                             </div>
                         </div>
@@ -101,9 +166,9 @@
                                 <input name="" type="checkbox" />Auxiliar de Docencia    
                         </div>
                         
-                    </form>
+                    
                 </div>
-//////////////////// materia detallada
+
                 <div class="panel-heading">Materias Detallado</div>
 
                      <div class="panel-body">
@@ -235,7 +300,10 @@
                             </div>
                         </div>
                     </div>
+                    </form>
             </div>
         </div>
+
+
 
 @endsection

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nombramiento
+class Nombramiento extends Model
 {
     //ORM de nombramiento
     protected $table = 'nombramiento';

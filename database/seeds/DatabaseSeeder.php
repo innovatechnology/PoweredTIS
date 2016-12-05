@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
     	$this->call('PostTableSeeder');
+        $this->call('UniversidadSeeder');
+
+        Model::reguard();
     }
 }
 class PostTableSeeder extends Seeder

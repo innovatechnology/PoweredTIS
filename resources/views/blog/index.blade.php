@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
           <div class="col-md-2 col-md-offset-0">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                  <div class="panel-heading">Menu</div>
                  <div class="panel-body">
                           <a href="http://localhost:8000/blog" >Pagina de inicio</a>
@@ -22,7 +22,7 @@
     <!--div class="col-xs-12 col-sm-12 col-md-15 margin-tb"-->
            <div class="col-md-8 col-md-offset-0">
                     <!--div class="pull-left"-->
-                      <div class="panel panel-default">
+                      <div class="panel panel-info">
                          <div class="panel-heading">Sistema de Nombramiento y Seguimineto Docente</div>
                            <div class="panel-body">            
             <!--h2>{{ config('blog.title') }}</h2-->
@@ -51,7 +51,7 @@
 
   
           <div class="col-md-2 col-md-offset-0">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                  <div class="panel-heading">Paginas Amigas</div>
                  <div class="panel-body">
                           <a href="http://www.cs.umss.edu.bo/" >cs.umss</a>

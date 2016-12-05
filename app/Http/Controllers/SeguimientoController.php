@@ -10,6 +10,8 @@ use App\Departamento;
 use App\Facultad;
 use App\Materia;
 use App\Docente;
+use App\Seguimiento;
+use App\ItemSeguimiento;
 class SeguimientoController extends Controller
 {
     /**
@@ -31,6 +33,7 @@ class SeguimientoController extends Controller
     {
         $docentes = Docente::All();
         $facultades = Facultad::All();
+        //esto no
         $departamentos = Departamento::All();
         $materias = Materia::All();
         $carreras = Carrera::All();
@@ -38,4 +41,45 @@ class SeguimientoController extends Controller
                'docentes' => $docentes, 'departamentos' => $departamentos,
                'materias' => $materias, 'carreras' => $carreras));
     }
+
+    public function registrarMateria()
+    {
+        $nuevoItem = new ItemSeguimiento;
+        $docente = Docente::where('nombre', $request->input('doc_name'))->first();
+        $idDocente = $docente->iddocente;
+        $seguimiento = Seguimiento::where('docente_iddocente', $idDocente)->first();
+        $idSeguimiento = $seguimiento->idseguimiento;
+        $nuevoItem->seguimiento_idseguimiento = $idSeguimiento;
+        $materia = Materia::where('nombre', $request->input('materia'))->first();
+        $idMateria = $materia->idmateria;
+        $nuevoItem->materia_idmateria = $idMateria;
+        $nuevoItem->horas_teoricas = 0;
+        $nuevoItem->save();
+    }
+    public function activarMateria()
+    {}
+    public function modificarMateria()
+    {}
+    public function eliminarMateria()
+    {}
+
+    public function registrarHorario()
+    {}
+    public function activarHorario()
+    {}
+    public function modificarHorario()
+    {}
+    public function eliminarHorario()
+    {}
+
+    public function registrarSeguimiento(Requests $request)
+    {
+        $seguimientoNuevo = new Seguimiento;
+        $docente = Docente::where('nombre', $request->input('doc_name'))->first();
+        $idDocente = $docente->iddocente;
+        $seguimientoNuevo->docente_iddocente = $idDocente;
+        $seguimiento->save();
+    }
+    public function activarSeguimiento()
+    {}
 }

@@ -121,6 +121,7 @@ class Universidad extends Migration
         Schema::create('periodo', function(Blueprint $table)
             {
                 $table->increments('idperiodo');
+                $table->string('horario', 20);
             });
         Schema::create('aula', function(Blueprint $table)
             {
@@ -130,6 +131,7 @@ class Universidad extends Migration
         Schema::create('hora', function(Blueprint $table)
             {
                 $table->increments('idhora');
+                $table->integer('dia');
                 $table->integer('item_iditem')->unsigned();
                 $table->integer('periodo_idperiodo')->unsigned();
                 $table->integer('aula_idaula')->unsigned();
@@ -165,6 +167,10 @@ class Universidad extends Migration
     public function down()
     {
         //eliminamos todas las tablas
+        
+        Schema::drop('hora');
+        Schema::drop('aula');
+        Schema::drop('periodo');
         Schema::drop('item_seguimiento');
         Schema::drop('materia_grupo');
         Schema::drop('materia');
@@ -174,8 +180,5 @@ class Universidad extends Migration
         Schema::drop('nombramiento');
         Schema::drop('seguimiento');
         Schema::drop('docente');
-        Schema::drop('hora');
-        Schema::drop('aula');
-        Schema::drop('periodo');
     }
 }

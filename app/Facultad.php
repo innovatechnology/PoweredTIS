@@ -13,6 +13,6 @@ class Facultad extends Model
 
     public function departamento()
     {
-    	return $this->hasMany('app/Departamento', 'facultad_idfacultad', 'idfacultad');
+    	return $this->hasMany('App\Departamento', 'facultad_idfacultad', 'idfacultad');
     }
 }
