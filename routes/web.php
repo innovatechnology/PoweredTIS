@@ -63,15 +63,15 @@ Route::get('/seguimiento/horario/activar', 'SeguimientoController@activarHorario
 Route::get('/seguimiento/horario/modificar', 'SeguimientoController@modificarHorario');
 Route::get('/seguimiento/horario/eliminar', 'SeguimientoController@eliminarHorario');
 
-Route::get('/seguimiento/seguimiento/registrar', 'SeguimientoController@registrarSeguimiento');
-Route::get('/seguimiento/seguimiento/activar', 'SeguimientoController@activarSeguimiento');
+Route::get('/seguimiento/registrar/{docente}', 'SeguimientoController@registrarSeguimiento');
+Route::get('/seguimiento/activar', 'SeguimientoController@activarSeguimiento');
 
 //para ajax sobre la universidad
 
 Route::get('/prueba', 'UniversidadController@prueba');
 Route::get('/universidad/departamentos/{facultad}', 'UniversidadController@departamento');
 Route::get('/universidad/carreras/{departamento}', 'UniversidadController@carrera');
-Route::get('/universidad/materias/{departamento}', 'UniversidadController@materia');
+Route::get('/universidad/materias', 'UniversidadController@materia');
 Route::post('/ajax', function()
 	{
 		return response()->json(array('resultado' => "o yah"));

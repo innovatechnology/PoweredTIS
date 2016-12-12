@@ -44,7 +44,7 @@ class SeguimientoController extends Controller
 
     public function registrarMateria()
     {
-        $nuevoItem = new ItemSeguimiento;
+        /*$nuevoItem = new ItemSeguimiento;
         $docente = Docente::where('nombre', $request->input('doc_name'))->first();
         $idDocente = $docente->iddocente;
         $seguimiento = Seguimiento::where('docente_iddocente', $idDocente)->first();
@@ -54,7 +54,9 @@ class SeguimientoController extends Controller
         $idMateria = $materia->idmateria;
         $nuevoItem->materia_idmateria = $idMateria;
         $nuevoItem->horas_teoricas = 0;
-        $nuevoItem->save();
+        $nuevoItem->save();*/
+
+        return view('blog/seguimiento/grupo');
     }
     public function activarMateria()
     {}
@@ -72,13 +74,16 @@ class SeguimientoController extends Controller
     public function eliminarHorario()
     {}
 
-    public function registrarSeguimiento(Requests $request)
+    public function registrarSeguimiento($docente)
     {
-        $seguimientoNuevo = new Seguimiento;
+        /*$seguimientoNuevo = new Seguimiento;
         $docente = Docente::where('nombre', $request->input('doc_name'))->first();
         $idDocente = $docente->iddocente;
         $seguimientoNuevo->docente_iddocente = $idDocente;
-        $seguimiento->save();
+        $seguimiento->save();*/
+
+        $facultades = Facultad::All();
+        return view('blog/seguimiento/seguimiento', ['facultades' => $facultades, 'docente' => $docente]);
     }
     public function activarSeguimiento()
     {}

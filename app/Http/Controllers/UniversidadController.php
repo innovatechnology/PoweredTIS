@@ -37,11 +37,11 @@ class UniversidadController extends Controller
         $carreras = Carrera::where('departamento_iddepartamento', $dep)->get();
         return response()->json($carreras);
     }
-    public function materia($departamento)
+    public function materia()
     {
-    	//devolvemos una lista de materias del departamento que nos digan
-    	$dep = Departamento::where('nombre', $departamento)->first()->iddepartamento;
-        $materias = Materia::where('departamento_iddepartamento', $dep)->get();
+    	//devolvemos una lista de materias del departamento que nos 
+        //corregido, TODAS las materias
+        $materias = Materia::All();
         return response()->json($materias);
     }
 

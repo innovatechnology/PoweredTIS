@@ -9,7 +9,7 @@
 function realizaProceso(){
 
         $.ajax({
-                url:   '/universidad/materias/sis-inf',
+                url:   '/universidad/materias',
                 data:'_token = <?php echo csrf_token() ?>',
                 dataType: 'json',
                 type:  'get',
