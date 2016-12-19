@@ -1,4 +1,6 @@
 <div class="panel-heading">Materias Detallado</div>
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+                    {{ csrf_field() }}
 
                      <div class="panel-body">
                             <p>Horario</p>
@@ -17,28 +19,17 @@
                                 </select>
                             </div>
                             </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                 <select class="form-control" id="hora">
-                                <label for="nombre" class="col-md-4 control-label">horaInicio</label>
-                                    <option selected="selected" disabled="disabled">hora Inicio</option>
-                                    <option>6:45</option>
-                                    <option>8:15</option>
-                                    <option>9:45</option>
-                                    <option>11:15</option>
-                                    <option>12:45</option>
-                                    <option>14:15</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <select class="form-control" id="dia">
-                                <label for="nombre" class="col-md-0 control-label">hora Fin</label>
-                                    <option selected="selected" disabled="disabled">hora Fin</option>
-                                   
-                                    <option>8:15</option>
-                                    <option>9:45</option>
-                                    <option>11:15</option>
-                                    <option>12:45</option>
-                                    <option>14:15</option>
+                                <label for="nombre" class="col-md-4 control-label">Periodo</label>
+                                    <option selected="selected" disabled="disabled">periodo</option>
+                                    <?php
+                                        for($i = 0; $i < count($horas); $i++)
+                                        {
+                                            $cadena = "<option>" . $horas[$i]['horario'] . "</option>";
+                                            echo($cadena);
+                                        }
+                                    ?>
                                 </select>
                             </div>
 
@@ -47,14 +38,20 @@
                             
 
                             <div class="col-md-2">
-                            <label for="Aula" class="col-md-6 control-label">Aula</label>
-                                <input id="aula" type="text" class="form-control" name="Aula" value="{{ old('Aula') }}" required autofocus>
-                                
-                                        
-                                            
-                               
+                                <select class="form-control" id="aula">
+                                <label for="nombre" class="col-md-4 control-label">Aula</label>
+                                    <option selected="selected" disabled="disabled">aula</option>
+                                    <?php
+                                        for($i = 0; $i < count($aulas); $i++)
+                                        {
+                                            $cadena = "<option>" . $aulas[$i]['nombre_aula'] . "</option>";
+                                            echo($cadena);
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
+                        <br><br><br><br>
 
                            <div class="form-group{}">
                             <label for="diploma" class="col-md-1 control-label">Hrs. Semana</label>

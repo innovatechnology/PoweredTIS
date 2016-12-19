@@ -12,6 +12,8 @@ use App\Materia;
 use App\Docente;
 use App\Seguimiento;
 use App\ItemSeguimiento;
+use App\Periodo;
+use App\Aula;
 class SeguimientoController extends Controller
 {
     /**
@@ -56,7 +58,10 @@ class SeguimientoController extends Controller
         $nuevoItem->horas_teoricas = 0;
         $nuevoItem->save();*/
 
-        return view('blog/seguimiento/grupo');
+        $horas = Periodo::get(['horario'])->toArray();
+        $aulas = Aula::get(['nombre_aula'])->toArray();
+
+        return view('blog/seguimiento/grupo', ['horas' => $horas, 'aulas' => $aulas]);
     }
     public function activarMateria()
     {}

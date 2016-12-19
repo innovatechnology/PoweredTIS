@@ -7,6 +7,7 @@ use App\Facultad;
 use App\Departamento;
 use App\Materia;
 use App\Carrera;
+use App\Docente;
 
 class UniversidadController extends Controller
 {
@@ -43,6 +44,37 @@ class UniversidadController extends Controller
         //corregido, TODAS las materias
         $materias = Materia::All();
         return response()->json($materias);
+    }
+
+    public function nuevoDocente()
+    {
+        return view('nuevodocente');
+    }
+    public function guardarDocente(Request $request)
+    {
+        $docente = new Docente;
+        $docente->nombre = $request->input('nombre');
+        $docente->titulo = $request->input('titulo');
+        $docente->diploma_academico = $request->input('diploma');
+        $docente->save();
+        return view('exito');
+    }
+
+    public function nuevaMateria()
+    {
+        $departamentos = Departamento::get(['nombre'])->toArray();
+        return view('nuevamateria', ['departamentos' => $departamentos]);
+    }
+    public function guardarMateria(Request $request)
+    {
+        $materia = new Materia;
+        $materia->nombre = $request->input('nombre');
+        $materia->descripcion = $request->input('descripcion');
+        $materia->sigla = $request->input('sigla');
+        $departamento = Departamento::where('nombre', $request->input('departamento'))->first();
+        $materia->departamento_iddepartamento = $departamento->iddepartamento;
+        $materia->save();
+        return view('exito');
     }
 
     public function prueba()

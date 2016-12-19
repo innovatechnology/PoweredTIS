@@ -76,3 +76,9 @@ Route::post('/ajax', function()
 	{
 		return response()->json(array('resultado' => "o yah"));
 	});
+
+Route::get('/docente/nuevo', 'UniversidadController@nuevoDocente');
+Route::post('/docente/guardar', 'UniversidadController@guardarDocente');
+
+Route::get('/materia/nuevo', 'UniversidadController@nuevaMateria');
+Route::post('/materia/guardar', 'UniversidadController@guardarMateria');

@@ -35,6 +35,14 @@
                       <div class="pull">
                             <a class="btn btn-success" href="/seguimiento"> Nuevo Seguimiento</a>
                       </div>
+                      <div> <p> </p> </div>
+                      <div class="pull">
+                            <a class="btn btn-success" href="/docente/nuevo"> Nuevo Docente</a>
+                      </div>
+                      <div> <p> </p> </div>
+                      <div class="pull">
+                            <a class="btn btn-success" href="/materia/nuevo"> Nueva Materia</a>
+                      </div>
                       <div> <p>  </p> </div>
                       <div> <p>  </p> </div>
                       <div> <p>  </p> </div>
