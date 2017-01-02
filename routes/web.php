@@ -82,3 +82,7 @@ Route::post('/docente/guardar', 'UniversidadController@guardarDocente');
 
 Route::get('/materia/nuevo', 'UniversidadController@nuevaMateria');
 Route::post('/materia/guardar', 'UniversidadController@guardarMateria');
+
+// About pdf generation
+
+Route::get('/pdf', array('as'=>'htmltopdf','uses'=>'PDFController@index'));
