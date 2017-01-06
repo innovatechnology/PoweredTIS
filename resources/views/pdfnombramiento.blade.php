@@ -16,9 +16,9 @@
 
   <p><label for="pensamiento_id">1.-Nombre del profesional para quien se solicita nombramineto como Docente Extraordinario en la Universidad Mayor de San Simon: <output type="text" name="usuario">{{$nombreDocente}}</label></p>
 
- <p><label>2.- CARRERA QUE SOLICITA LA NOMINACION: <input type="text" name="usuario"></label></p>
-<p><label>3.-DEPARTAMENTO: <input type="text" name="usuario"></label></p>
-  <p><label>4.-FACULTAD: <input type="text" name="usuario"></label></p>
+ <p><label>2.- CARRERA QUE SOLICITA LA NOMINACION: {{$carrera[0]}}</label></p>
+<p><label>3.-DEPARTAMENTO: {{$departamento[0]}}</label></p>
+  <p><label>4.-FACULTAD: {{$facultad[0]}}</label></p>
  <p><label>5.-DIPLOMA ACADEMICO: <output type="text" name="usuario" value = {{$diplomaAcademico}}>{{$diplomaAcademico}}</label></p>
 <p><label>6.- TITULO PROFESIONAL EN PROVISION NACIONAL: <output type="text" name="usuario" value = {{$titulo}}>{{$titulo}}</label></p>
 <p><label>7.-CATEGORIA DEL NOMBRAMIENTO SOLICIDATO: </label></p>
@@ -34,7 +34,7 @@
 <label for="mujer">CATEDRATICO(C): </label>
 
 		
-<p><label>8.-Asignaturas(materias,modulos,semnario)que dictara HRS SEMANA: <input type="text" name="usuario"> HRS. MES <input type="text" name="usua"></label></p>
+<p><label>8.-Asignaturas(materias,modulos,semnario)que dictara </label></p>
 <?php
 for($i = 0; $i < count($nombreMateria); $i++)
 {
@@ -47,9 +47,9 @@ for($i = 0; $i < count($nombreMateria); $i++)
 <label for="mujer">TIEMPO PARCIAL: </label>
 <input type="radio" name="sexo" id="mujer" value="Mujer">
 <label for="mujer">TIEMPO EXCLUSIVO: </label>
-<p><label>10.- NOMBRAMIENTO APARTIR DE: <input type="text" name="usuario"></label></p>
+<p><label>10.- NOMBRAMIENTO APARTIR DE: {{$fecha1}} </label></p>
 <p><label>11.-TIEMPO DE DURACON DEL NOMBRAMIENTO: <output type="text" name="usuario" value = "UN SEMSTRE">UN SEMSTRE</label></p>
-<p><label>12.-FECHA DE SOLICITUD: <input type="text" name="usuario"></label></p>
+<p><label>12.-FECHA DE SOLICITUD: {{$fecha2}}</label></p>
 
 
 

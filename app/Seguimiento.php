@@ -20,4 +20,8 @@ class Seguimiento extends Model
     {
     	return $this->hasMany('App\ItemSeguimiento', 'seguimiento_idseguimiento', 'seguimiento');
     }
+    public function docente()
+    {
+        return $this->belongsTo('App\Docente', 'docente_iddocente', 'iddocente');
+    }
 }

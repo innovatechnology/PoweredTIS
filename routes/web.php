@@ -88,7 +88,7 @@ Route::post('/materia/guardar', 'UniversidadController@guardarMateria');
 Route::get('/pdf', array('as'=>'htmltopdf','uses'=>'PDFController@index'));
 
 Route::get('/pdfnombramiento', array('as'=>'htmltopdfnombramiento','uses'=>'DatosController@armarNombramiento'));
-Route::get('/pdfseguimiento', array('as'=>'htmltopdfseguimiento','uses'=>'DatosController@armarSeguimiento'));
+Route::get('/pdfseguimiento/{docente}', array('as'=>'htmltopdfseguimiento','uses'=>'DatosController@armarSeguimiento'));
 
 Route::get('/tablamagica', function(){
 	return view('tabla');

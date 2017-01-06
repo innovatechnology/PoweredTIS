@@ -91,6 +91,8 @@ class SeguimientoController extends Controller
         $grupo = ItemSeguimiento::find($request->input('numitem'));
         $extra = $grupo->extra;
 
+        $docente = $grupo->seguimiento->docente->nombre;
+
         $materia = Materia::where('nombre', $request->input('materia'))->first();
         $idmateria = $materia->idmateria;
         $grupo->materia_idmateria = $idmateria;
@@ -108,7 +110,7 @@ class SeguimientoController extends Controller
         $horas = Periodo::get(['horario'])->toArray();
         $aulas = Aula::get(['nombre_aula'])->toArray();
 
-        return view('blog/seguimiento/grupo', ['horas' => $horas, 'aulas' => $aulas]);
+        return view('blog/seguimiento/grupo', ['horas' => $horas, 'aulas' => $aulas, 'docente' => $docente]);
     }
     public function activarHorario()
     {}

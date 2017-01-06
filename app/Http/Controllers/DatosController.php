@@ -7,6 +7,7 @@ use App\ItemSeguimiento;
 use App\Docente;
 use App\Usuario;
 use App\User;
+use App\Seguimiento;
 
 use PDF;
 
@@ -14,10 +15,10 @@ class DatosController extends Controller
 {
     //este es el ccontrolador de recuperacion de los datos de los formularios
 
-    public function armarSeguimiento(Request $request)
+    public function armarSeguimiento(Request $request, $doc)
     {
     	//el monbre del docente
-    	$nombreDocente = "docente1";
+    	$nombreDocente = $doc;
     	$docente = Docente::where('nombre', $nombreDocente)->first();
     	$idseguimiento = $docente->seguimiento->idseguimiento;
     	$items = ItemSeguimiento::where('seguimiento_idseguimiento', $idseguimiento)->get();
@@ -36,18 +37,16 @@ class DatosController extends Controller
         }
     	$blogs = User::all();
     	view()->share('blogs', $blogs);
-    	if($request->has('download'))
-    	{
     		$pdf = PDF::loadView('pdf', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'facultad' => $facultad, 'departamento' => $departamento, 'carrera' => $carrera])->setPaper('a4','landscape');
     		return $pdf->download('seguimiento.pdf');
-    	}
-    	return view('index');
     }
 
     public function armarNombramiento(Request $request)
     {
     	//$nombreDocente = $request-input('docente');
-    	$nombreDocente = "decente2";
+    	$nombreDocente = $request->input('docente');
+        $fecha1 = $request->input('fecha1');
+        $fecha2 = $request->input('fecha2');
     	$docente = Docente::where('nombre', $nombreDocente)->first();
     	$idseguimiento = $docente->seguimiento->idseguimiento;
     	$items = ItemSeguimiento::where('seguimiento_idseguimiento', $idseguimiento)->get();
@@ -75,11 +74,7 @@ class DatosController extends Controller
 
     	$blogs = User::all();
     	view()->share('blogs', $blogs);
-    	if($request->has('download'))
-    	{
-    		$pdf = PDF::loadView('pdfnombramiento', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'facultad' => $facultad, 'departamento' => $departamento, 'carrera' => $carrera, 'diplomaAcademico' => $diplomaAcademico, 'titulo' => $titulo])->setPaper('a4','portrait');
+    		$pdf = PDF::loadView('pdfnombramiento', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'facultad' => $facultad, 'departamento' => $departamento, 'carrera' => $carrera, 'diplomaAcademico' => $diplomaAcademico, 'titulo' => $titulo, 'fecha1' => $fecha1, 'fecha2' => $fecha2])->setPaper('a4','portrait');
     		return $pdf->download('nombramiento.pdf');
-    	}
-    	return view('index');
     }
 }

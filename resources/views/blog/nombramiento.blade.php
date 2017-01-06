@@ -4,12 +4,12 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">Formulario de Nombramiento</div>
 	            <div class="panel-body">
-	                <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+	                <form class="form-horizontal" role="form" method="get" action="{{ url('/pdfnombramiento') }}">
 	                {{ csrf_field() }}
 	                    <div class="form-group{{ $errors->has('doc_name') ? ' has-error' : '' }}">
 	                        <label for="doc_name" class="col-md-4 control-label">Nombre del docente</label>
 	                        <div class="col-md-6">
-	                            <select class="form-control" id="doc_name">
+	                            <select class="form-control" name = "docente" id="doc_name">
 	                            	<option selected="selected" disabled="disabled">Seleccione un Docente</option>
 								    @foreach ($docentes as $docente)
     									<option>{{ $docente -> nombre }}</option>
@@ -32,7 +32,7 @@
 	                    <div class="form-group{{ $errors->has('fecha_nomb') ? ' has-error' : '' }}">
 	                        <label for="fecha_nomb" class="col-md-4 control-label">Fecha de Nombramiento</label>
 	                        <div class="col-md-6">
-							 	<input type="date" class="form-control" name="fecha_nomb">
+							 	<input type="date" class="form-control" name="fecha1">
 	                    	</div>
 	                    </div>
 	                    <div class="form-group{{ $errors->has('duracion_nomb') ? ' has-error' : '' }}">
@@ -48,7 +48,7 @@
 	                    <div class="form-group{{ $errors->has('fecha_sol') ? ' has-error' : '' }}">
 	                        <label for="fecha_sol" class="col-md-4 control-label">Fecha de Solicitud</label>
 	                       	<div class="col-md-6">
-								<input type="date" class="form-control" name="fecha_sol">
+								<input type="date" class="form-control" name="fecha2">
 	                    	</div>
 	                    </div>
 	                    <div class="form-group">
