@@ -53,12 +53,12 @@ Route::post('/exito', function()
 });
 
 //para el formulario de seguimiento
-Route::get('/seguimiento/materia/registrar', 'SeguimientoController@registrarMateria');
-Route::get('/seguimiento/materia/activar', 'SeguimientoController@activarMateria');
-Route::get('/seguimiento/materia/modificar', 'SeguimientoController@modificarMateria');
-Route::get('/seguimiento/materia/eliminar', 'SeguimientoController@eliminarMateria');
+Route::post('/seguimiento/materia/registrar', 'SeguimientoController@registrarMateria');
+Route::post('/seguimiento/materia/activar', 'SeguimientoController@activarMateria');
+Route::post('/seguimiento/materia/modificar', 'SeguimientoController@modificarMateria');
+Route::post('/seguimiento/materia/eliminar', 'SeguimientoController@eliminarMateria');
 
-Route::get('/seguimiento/horario/registrar', 'SeguimientoController@registrarHorario');
+Route::post('/seguimiento/horario/registrar', 'SeguimientoController@registrarHorario');
 Route::get('/seguimiento/horario/activar', 'SeguimientoController@activarHorario');
 Route::get('/seguimiento/horario/modificar', 'SeguimientoController@modificarHorario');
 Route::get('/seguimiento/horario/eliminar', 'SeguimientoController@eliminarHorario');
@@ -86,3 +86,10 @@ Route::post('/materia/guardar', 'UniversidadController@guardarMateria');
 // About pdf generation
 
 Route::get('/pdf', array('as'=>'htmltopdf','uses'=>'PDFController@index'));
+
+Route::get('/pdfnombramiento', array('as'=>'htmltopdf','uses'=>'DatosController@armarNombramiento'));
+Route::get('/pdfseguimiento', array('as'=>'htmltopdf','uses'=>'DatosController@armarSeguimiento'));
+
+Route::get('/tablamagica', function(){
+	return view('tabla');
+});

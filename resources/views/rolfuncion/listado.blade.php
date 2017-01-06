@@ -1,4 +1,4 @@
-<html>
+	<html>
 	<head>
 		<title>Lista de {{$tipo}}</title>
 	</head>

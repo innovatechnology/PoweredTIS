@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Materia;
 
 class ItemSeguimiento extends Model
 {
@@ -15,8 +16,12 @@ class ItemSeguimiento extends Model
     {
     	return $this->belongsTo('app/Seguimiento', 'seguimiento_idseguimiento', 'idseguimiento');
     }
-    public function Horas()
+    public function horas()
     {
     	return $this->hasMany('app/Hora', 'item_iditem', 'iditem');
+    }
+    public function materia()
+    {
+        return $this->belongsTo('App\Materia', 'materia_idmateria', 'idmateria');
     }
 }

@@ -1,3 +1,8 @@
+@extends('blog.app')
+@section('content')
+<script src="//code.jquery.com/jquery-latest.js"></script>
+
+    <div class="container" id = "general">
 <script>
 function registrarMateria()
 {
@@ -85,10 +90,8 @@ function seleccionDepartamento()
 </script>
             <div class="panel-heading">Formulario de Seguimiento</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="/seguimiento/horario/registrar">
                     {{ csrf_field() }}
-
-                    <input type = "hidden" name = "docenteactual" id = "docenteactual" value = {{$docente}}>
 
                         <div class="form-group{{ $errors->has('facultad') ? ' has-error' : '' }}">
                             <label for="facultad" class="col-md-4 control-label">Facultad</label>
@@ -127,7 +130,7 @@ function seleccionDepartamento()
                             <label for="carrera" class="col-md-4 control-label">Materia</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="materia">
+                                <select class="form-control" id="materia" name = "materia">
                                     <option selected="selected" disabled="disabled">Seleccione Departamento primero</option>
 
                                 </select>
@@ -165,18 +168,19 @@ function seleccionDepartamento()
                             <br />
                                 <input name="" type="checkbox" />Auxiliar de Docencia    
                         </div>
-                        
-                    
-                </div>
-                    </form>
 
-                    <div class="panel-body">
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button class="btn btn-primary" onclick = "registrarMateria();return false;">
+                                <button class="btn btn-primary">
                                     Siguiente
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </form>    
+                    
+                </div>
             </div>
+
+</div>
+
+@endsection

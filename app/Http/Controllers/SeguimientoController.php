@@ -44,34 +44,48 @@ class SeguimientoController extends Controller
                'materias' => $materias, 'carreras' => $carreras));
     }
 
-    public function registrarMateria()
+    public function registrarMateria(Request $request)
     {
-        /*$nuevoItem = new ItemSeguimiento;
-        $docente = Docente::where('nombre', $request->input('doc_name'))->first();
-        $idDocente = $docente->iddocente;
-        $seguimiento = Seguimiento::where('docente_iddocente', $idDocente)->first();
-        $idSeguimiento = $seguimiento->idseguimiento;
-        $nuevoItem->seguimiento_idseguimiento = $idSeguimiento;
+        $grupo = new ItemSeguimiento();
+        $grupo->seguimiento_idseguimiento = $request->input('numseguimiento');
+        $grupo->materia_idmateria = 1;
+        $grupo->horas_teoricas = 0;
+        $grupo->save();
+        $iditem = $grupo->iditem;
+        $facultades = Facultad::All();
+        return view('blog/seguimiento/seguimiento', ['facultades' => $facultades, 'iditem' => $iditem]);
+    }
+    public function activarMateria(Request $request)
+    {
+        $grupo = ItemSeguimiento::find($request->input('numitem'));
+        $materia = Materia::where('nombre', $request->select('materia'))->first();
+        $idmateria = $idmateria->idmateria;
+        $grupo->materia_idmateria = $idmateria;
+        $grupo->save();
+    }
+    public function modificarMateria(Request $request)
+    {
+        $facultades = Facultad::All();
+        $iditem = $request->input('numitem');
+        return view('blog/seguimiento/seguimiento', ['facultades' => $facultades, 'iditem' => $iditem]);
+    }
+    public function eliminarMateria()
+    {}
+
+    public function registrarHorario(Request $request)
+    {
+
+        $grupo = ItemSeguimiento::find($request->input('numitem'));
         $materia = Materia::where('nombre', $request->input('materia'))->first();
-        $idMateria = $materia->idmateria;
-        $nuevoItem->materia_idmateria = $idMateria;
-        $nuevoItem->horas_teoricas = 0;
-        $nuevoItem->save();*/
+        $idmateria = $materia->idmateria;
+        $grupo->materia_idmateria = $idmateria;
+        $grupo->save();
 
         $horas = Periodo::get(['horario'])->toArray();
         $aulas = Aula::get(['nombre_aula'])->toArray();
 
         return view('blog/seguimiento/grupo', ['horas' => $horas, 'aulas' => $aulas]);
     }
-    public function activarMateria()
-    {}
-    public function modificarMateria()
-    {}
-    public function eliminarMateria()
-    {}
-
-    public function registrarHorario()
-    {}
     public function activarHorario()
     {}
     public function modificarHorario()
@@ -79,16 +93,26 @@ class SeguimientoController extends Controller
     public function eliminarHorario()
     {}
 
-    public function registrarSeguimiento($docente)
+    public function registrarSeguimiento($docenteDato)
     {
-        /*$seguimientoNuevo = new Seguimiento;
-        $docente = Docente::where('nombre', $request->input('doc_name'))->first();
+        $docente = Docente::where('nombre', $docenteDato)->first();
         $idDocente = $docente->iddocente;
-        $seguimientoNuevo->docente_iddocente = $idDocente;
-        $seguimiento->save();*/
+        $seguimientoNuevo = Seguimiento::where('docente_iddocente', $idDocente)->get();
+        if(count($seguimientoNuevo) == 0)
+        {
+            $seguimientoNuevo = new Seguimiento();
+            $seguimientoNuevo->docente_iddocente = $idDocente;
+            $seguimientoNuevo->save();
+        }else
+        {
+            $seguimientoNuevo = $seguimientoNuevo[0];
+        }
 
         $facultades = Facultad::All();
-        return view('blog/seguimiento/seguimiento', ['facultades' => $facultades, 'docente' => $docente]);
+
+        $ide = $seguimientoNuevo->idseguimiento;
+        $grupos = ItemSeguimiento::where('seguimiento_idseguimiento', $ide)->get();
+        return view('blog/seguimiento/listagrupos', ['grupos' => $grupos, 'numseguimiento' => $ide]);
     }
     public function activarSeguimiento()
     {}
