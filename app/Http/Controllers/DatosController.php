@@ -22,18 +22,24 @@ class DatosController extends Controller
     	$idseguimiento = $docente->seguimiento->idseguimiento;
     	$items = ItemSeguimiento::where('seguimiento_idseguimiento', $idseguimiento)->get();
     	$nombreMateria = array();
-    	$siglaMateria = array();
-    	for($i = 0; $i < count($items); $i++)
-    	{
-    		$nombreMateria[] = $items[$i]->materia->nombre;
-    		$siglaMateria[] = $items[$i]->materia->sigla;
-    	}
+        $siglaMateria = array();
+        $facultad = array();
+        $departamento = array();
+        $carrera = array();
+        for($i = 0; $i < count($items); $i++)
+        {
+            $nombreMateria[] = $items[$i]->materia->nombre;
+            $siglaMateria[] = $items[$i]->materia->sigla;
+            $facultad[] = $items[$i]->extra->facultad;
+            $departamento[] = $items[$i]->extra->departamento;
+            $carrera[] = $items[$i]->extra->carrera;
+        }
     	$blogs = User::all();
     	view()->share('blogs', $blogs);
     	if($request->has('download'))
     	{
-    		$pdf = PDF::loadView('pdf', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria])->setPaper('a4','landscape');
-    		return $pdf->download('nombramiento.pdf');
+    		$pdf = PDF::loadView('pdf', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'facultad' => $facultad, 'departamento' => $departamento, 'carrera' => $carrera])->setPaper('a4','landscape');
+    		return $pdf->download('seguimiento.pdf');
     	}
     	return view('index');
     }
@@ -47,10 +53,16 @@ class DatosController extends Controller
     	$items = ItemSeguimiento::where('seguimiento_idseguimiento', $idseguimiento)->get();
     	$nombreMateria = array();
     	$siglaMateria = array();
+        $facultad = array();
+        $departamento = array();
+        $carrera = array();
     	for($i = 0; $i < count($items); $i++)
     	{
     		$nombreMateria[] = $items[$i]->materia->nombre;
     		$siglaMateria[] = $items[$i]->materia->sigla;
+            $facultad[] = $items[$i]->extra->facultad;
+            $departamento[] = $items[$i]->extra->departamento;
+            $carrera[] = $items[$i]->extra->carrera;
     	}
     	//carrera departamento facultad
     	$diplomaAcademico = $docente->diploma_academico;
@@ -65,7 +77,7 @@ class DatosController extends Controller
     	view()->share('blogs', $blogs);
     	if($request->has('download'))
     	{
-    		$pdf = PDF::loadView('pdfnombramiento', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'diplomaAcademico' => $diplomaAcademico, 'titulo' => $titulo])->setPaper('a4','portrait');
+    		$pdf = PDF::loadView('pdfnombramiento', ['nombreDocente' => $nombreDocente, 'nombreMateria' => $nombreMateria, 'siglaMateria' => $siglaMateria, 'facultad' => $facultad, 'departamento' => $departamento, 'carrera' => $carrera, 'diplomaAcademico' => $diplomaAcademico, 'titulo' => $titulo])->setPaper('a4','portrait');
     		return $pdf->download('nombramiento.pdf');
     	}
     	return view('index');

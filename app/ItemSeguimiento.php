@@ -24,4 +24,8 @@ class ItemSeguimiento extends Model
     {
         return $this->belongsTo('App\Materia', 'materia_idmateria', 'idmateria');
     }
+    public function extra()
+    {
+        return $this->hasOne('App\Extra', 'item_iditem', 'iditem');
+    }
 }

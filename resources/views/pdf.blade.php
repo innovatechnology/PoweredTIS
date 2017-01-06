@@ -26,9 +26,24 @@
       
     </tr>
     <tr>
-      <td>1.-</td>
-      <td>1.-</td>
-      <td>1.-</td>
+      <td>1.-<?php
+       if(0 < count($nombreMateria))
+       {
+        echo($facultad[0]);
+       }
+       ?></td>
+      <td>1.-<?php
+       if(0 < count($nombreMateria))
+       {
+        echo($departamento[0]);
+       }
+       ?></td>
+      <td>1.-<?php
+       if(0 < count($nombreMateria))
+       {
+        echo($carrera[0]);
+       }
+       ?></td>
        <td>1.- <?php
        if(0 < count($nombreMateria))
        {
@@ -41,9 +56,24 @@
       <td></td>
     </tr>
     <tr>
-      <td>2.-</td>
-      <td>2.-</td>
-      <td>2.-</td>
+      <td>2.-<?php
+       if(1 < count($nombreMateria))
+       {
+        echo($facultad[1]);
+       }
+       ?></td>
+      <td>2.-<?php
+       if(1 < count($nombreMateria))
+       {
+        echo($departamento[1]);
+       }
+       ?></td>
+      <td>2.-<?php
+       if(1 < count($nombreMateria))
+       {
+        echo($carrera[1]);
+       }
+       ?></td>
        <td>2.- <?php
        if(1 < count($nombreMateria))
        {
@@ -56,9 +86,24 @@
       <td></td>
     </tr>
         <tr>
-      <td>3.-</td>
-      <td>3.-</td>
-      <td>3.-</td>
+      <td>3.-<?php
+       if(2 < count($nombreMateria))
+       {
+        echo($facultad[2]);
+       }
+       ?></td>
+      <td>3.-<?php
+       if(2 < count($nombreMateria))
+       {
+        echo($departamento[2]);
+       }
+       ?></td>
+      <td>3.-<?php
+       if(2 < count($nombreMateria))
+       {
+        echo($carrera[2]);
+       }
+       ?></td>
        <td>3.- <?php
        if(2 < count($nombreMateria))
        {
@@ -71,9 +116,24 @@
       <td></td>
     </tr>
     <tr>
-      <td>4.-</td>
-      <td>4.-</td>
-      <td>4.-</td>
+      <td>4.-<?php
+       if(3 < count($nombreMateria))
+       {
+        echo($facultad[3]);
+       }
+       ?></td>
+      <td>4.-<?php
+       if(3 < count($nombreMateria))
+       {
+        echo($departamento[3]);
+       }
+       ?></td>
+      <td>4.-<?php
+       if(3 < count($nombreMateria))
+       {
+        echo($carrera[3]);
+       }
+       ?></td>
        <td>4.- <?php
        if(3 < count($nombreMateria))
        {

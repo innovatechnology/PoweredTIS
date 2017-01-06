@@ -15,7 +15,7 @@ class PDFController extends Controller
     	view()->share('blogs', $blogs);
     	if($req->has('download'))
     	{
-    		$pdf = PDF::loadView('pdf')->setPaper('a4','landscape');
+    		$pdf = PDF::loadView('pdfnombramiento')->setPaper('a4','landscape');
     		return $pdf->download('nombramiento.pdf');
     	}
     	return view('index');

@@ -92,12 +92,13 @@ function seleccionDepartamento()
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="/seguimiento/horario/registrar">
                     {{ csrf_field() }}
+                    <input type = "hidden" name = "numitem" value = {{$iditem}}>
 
                         <div class="form-group{{ $errors->has('facultad') ? ' has-error' : '' }}">
                             <label for="facultad" class="col-md-4 control-label">Facultad</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="facultad" onchange="seleccionFacultad();return false;">
+                                <select class="form-control" id="facultad" name = "facultad" onchange="seleccionFacultad();return false;">
                                     <option selected="selected" disabled="disabled">Seleccione Facultad</option>
                                     @foreach ($facultades as $facultad)
                                         <option value = "{{ $facultad -> nombre }}">{{ $facultad -> nombre }}</option>
@@ -110,7 +111,7 @@ function seleccionDepartamento()
                             <label for="departamento" class="col-md-4 control-label">Departamento</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="departamento" onchange="seleccionDepartamento()">
+                                <select class="form-control" id="departamento" name = "departamento" onchange="seleccionDepartamento()">
                                     <option selected="selected" disabled="disabled" value = "Seleccione Facultad primero">Seleccione Facultad primero </option>
                                     
                                 </select>
@@ -120,7 +121,7 @@ function seleccionDepartamento()
                             <label for="carrera" class="col-md-4 control-label">Carrera</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="carrera">
+                                <select class="form-control" id="carrera" name = "carrera">
                                     <option selected="selected" disabled="disabled">Seleccione Departamento Primero</option>
 
                                 </select>

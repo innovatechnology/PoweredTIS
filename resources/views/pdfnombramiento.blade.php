@@ -38,7 +38,7 @@
 <?php
 for($i = 0; $i < count($nombreMateria); $i++)
 {
-	$cadena = "<p><label>" . $nombreMateria[$i] . "<output>" . $siglaMateria[$i] . "</label></p>";
+	$cadena = "<p><label>" . $facultad[$i] . "     " . $departamento[$i] . "     " . $carrera[$i] . "     " . $nombreMateria[$i] . "     " . $siglaMateria[$i] . "</label></p>";
 	echo($cadena);
 }
 ?>

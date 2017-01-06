@@ -14,7 +14,7 @@ use App\ItemSeguimiento;
         </form>
         <br>
     @endforeach
-    <form method = "post" action = "seguimiento/materia/registrar">
+    <form method = "post" action = "/seguimiento/materia/registrar">
         {{ csrf_field() }}
         <input type = "hidden" name = "numseguimiento" value = {{$numseguimiento}}>
         <input type = "submit" class = "btn btn-primary" value = "Nuevo Grupo">

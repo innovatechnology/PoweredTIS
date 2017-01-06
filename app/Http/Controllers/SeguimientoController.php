@@ -14,6 +14,7 @@ use App\Seguimiento;
 use App\ItemSeguimiento;
 use App\Periodo;
 use App\Aula;
+use App\Extra;
 class SeguimientoController extends Controller
 {
     /**
@@ -51,6 +52,18 @@ class SeguimientoController extends Controller
         $grupo->materia_idmateria = 1;
         $grupo->horas_teoricas = 0;
         $grupo->save();
+
+        $extra = new Extra();
+        $extra->item_iditem = $grupo->iditem;
+        $extra->facultad = 'FCYT';
+        $extra->departamento = 'inf-sis';
+        $extra->carrera = 'sistemas';
+        $extra->interno = false;
+        $extra->invitado = false;
+        $extra->asistente = false;
+        $extra->adjunto = false;
+        $extra->save();
+
         $iditem = $grupo->iditem;
         $facultades = Facultad::All();
         return view('blog/seguimiento/seguimiento', ['facultades' => $facultades, 'iditem' => $iditem]);
@@ -76,10 +89,21 @@ class SeguimientoController extends Controller
     {
 
         $grupo = ItemSeguimiento::find($request->input('numitem'));
+        $extra = $grupo->extra;
+
         $materia = Materia::where('nombre', $request->input('materia'))->first();
         $idmateria = $materia->idmateria;
         $grupo->materia_idmateria = $idmateria;
         $grupo->save();
+
+        $extra->facultad = $request->input('facultad');
+        $extra->departamento = $request->input('departamento');
+        $extra->carrera = $request->input('carrera');
+        $extra->interno = true;
+        $extra->invitado = false;
+        $extra->asistente = false;
+        $extra->adjunto = false;
+        $extra->save();
 
         $horas = Periodo::get(['horario'])->toArray();
         $aulas = Aula::get(['nombre_aula'])->toArray();

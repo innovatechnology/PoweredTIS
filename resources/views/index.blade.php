@@ -26,7 +26,7 @@
           Export All Data <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="{{ route('htmltopdf',['download'=>'pdf']) }}">Export to PDF</a></li>
+          <li><a href="{{ route('htmltopdfseguimiento',['download'=>'pdf']) }}">Export to PDF</a></li>
         </ul>
       </div>
       <table class="table table-striped">
