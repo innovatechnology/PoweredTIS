@@ -25,7 +25,7 @@
 <body>
     <header>
             <div>
-            <img src="logoa2.png"  />
+            <img src="/logoa2.png">
                 <!--h1> cabeza </h1-->
             
             </div>

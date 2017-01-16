@@ -1,5 +1,7 @@
+@extends('blog.app')
+@section('content')
 <div class="panel-heading">Materias Detallado</div>
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+            <form class="form-horizontal" role="form" method="GET" action="/pdfseguimiento/{{$docente}}">
                     {{ csrf_field() }}
 
                      <div class="panel-body">
@@ -119,3 +121,6 @@
                     </form>
             </div>
         </div>
+
+
+@endsection

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nombramiento extends Model
+class Seguimiento extends Model
 {
     //ORM de seguimiento
     protected $table = 'seguimiento';
@@ -13,11 +13,15 @@ class Nombramiento extends Model
 
     public function nombramiento()
     {
-    	return $this->hasOne('app/Nombramiento', 'seguimiento_idseguimiento', 'idseguimiento');
+    	return $this->hasOne('App\Nombramiento', 'seguimiento_idseguimiento', 'idseguimiento');
     }
 
     public function items()
     {
-    	return $this->hasMany('app/ItemSeguimiento', 'seguimiento_idseguimiento', 'seguimiento');
+    	return $this->hasMany('App\ItemSeguimiento', 'seguimiento_idseguimiento', 'seguimiento');
+    }
+    public function docente()
+    {
+        return $this->belongsTo('App\Docente', 'docente_iddocente', 'iddocente');
     }
 }

@@ -13,6 +13,6 @@ class Nombramiento extends Model
 
     public function seguimiento()
     {
-    	return $this->belongsTo('app/Seguimiento', 'seguimiento_idseguimiento', 'idseguimiento');
+    	return $this->belongsTo('App\Seguimiento', 'seguimiento_idseguimiento', 'idseguimiento');
     }
 }

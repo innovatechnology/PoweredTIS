@@ -2,43 +2,43 @@
 
 <head>
 
-<title>Ejemplo sencillo de AJAX </title>
+<title>Handdsontable free</title>
 <script src="//code.jquery.com/jquery-latest.js"></script>
-
-<script>
-function realizaProceso(){
-
-        $.ajax({
-                url:   '/universidad/materias',
-                data:'_token = <?php echo csrf_token() ?>',
-                dataType: 'json',
-                type:  'get',
-                beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
-                },
-                success:  function (data) {
-                    var cadena = "";
-                    for(var i = 0; i < data.length; i++)
-                    {
-                        cadena = cadena + ";" + data[i].nombre
-                    }
-                    $("#resultado").html(cadena);
-                },
-                error: function()
-                {
-                    $("#resultado").html("gg wp");
-                }
-        });
-}
-</script>
-
+<link rel="stylesheet" type="text/css" href="handsontable-master/dist/handsontable.full.min.css">
+<script src = "handsontable-master/dist/handsontable.full.min.js"></script>
 </head>
 
 <body>
-
-Realiza suma
-<input type="button" href="javascript:;" onclick="realizaProceso();return false;" value="Calcula"/>
-<br/>
-Resultado: <span id="resultado">0</span>
+    <header>
+            <div>
+            <img src="logoa2.png"  />
+                <!--h1> cabeza </h1-->
+            
+            </div>
+    
+    </header>
+    <div id = "tabla">
+        Hola
+    </div>
+    <script>
+var datitos = [
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', ''],
+['', '', '', '', '', '']
+];
+var lugar = $('#tabla');
+lugar.handsontable({
+    data: datitos,
+    rowHeaders: ['6:45', '8:15', '9:45', '11:15', '12:45', '14:15', '15:45', '17:15', '18:45', '20:15'],
+    colHeaders: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
+});
+</script>
 </body>
 </html>

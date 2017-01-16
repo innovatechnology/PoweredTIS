@@ -13,6 +13,11 @@ class Rol extends Model
 
     public function usuarioRol()
     {
-    	return $this->hasMany('app/UsuarioRol', 'rol_idrol', 'idrol');
+    	return $this->hasMany('App\UsuarioRol', 'rol_idrol', 'idrol');
+    }
+
+    public function rolFuncion()
+    {
+    	return $this->hasMany('App\RolFuncion', 'rol_idrol', 'idrol');
     }
 }

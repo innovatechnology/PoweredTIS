@@ -1,3 +1,8 @@
+@extends('blog.app')
+@section('content')
+<script src="//code.jquery.com/jquery-latest.js"></script>
+
+    <div class="container" id = "general">
 <script>
 function registrarMateria()
 {
@@ -85,16 +90,15 @@ function seleccionDepartamento()
 </script>
             <div class="panel-heading">Formulario de Seguimiento</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/exito') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="/seguimiento/horario/registrar">
                     {{ csrf_field() }}
-
-                    <input type = "hidden" name = "docenteactual" id = "docenteactual" value = {{$docente}}>
+                    <input type = "hidden" name = "numitem" value = {{$iditem}}>
 
                         <div class="form-group{{ $errors->has('facultad') ? ' has-error' : '' }}">
                             <label for="facultad" class="col-md-4 control-label">Facultad</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="facultad" onchange="seleccionFacultad();return false;">
+                                <select class="form-control" id="facultad" name = "facultad" onchange="seleccionFacultad();return false;">
                                     <option selected="selected" disabled="disabled">Seleccione Facultad</option>
                                     @foreach ($facultades as $facultad)
                                         <option value = "{{ $facultad -> nombre }}">{{ $facultad -> nombre }}</option>
@@ -107,7 +111,7 @@ function seleccionDepartamento()
                             <label for="departamento" class="col-md-4 control-label">Departamento</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="departamento" onchange="seleccionDepartamento()">
+                                <select class="form-control" id="departamento" name = "departamento" onchange="seleccionDepartamento()">
                                     <option selected="selected" disabled="disabled" value = "Seleccione Facultad primero">Seleccione Facultad primero </option>
                                     
                                 </select>
@@ -117,7 +121,7 @@ function seleccionDepartamento()
                             <label for="carrera" class="col-md-4 control-label">Carrera</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="carrera">
+                                <select class="form-control" id="carrera" name = "carrera">
                                     <option selected="selected" disabled="disabled">Seleccione Departamento Primero</option>
 
                                 </select>
@@ -127,7 +131,7 @@ function seleccionDepartamento()
                             <label for="carrera" class="col-md-4 control-label">Materia</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" id="materia">
+                                <select class="form-control" id="materia" name = "materia">
                                     <option selected="selected" disabled="disabled">Seleccione Departamento primero</option>
 
                                 </select>
@@ -165,18 +169,19 @@ function seleccionDepartamento()
                             <br />
                                 <input name="" type="checkbox" />Auxiliar de Docencia    
                         </div>
-                        
-                    
-                </div>
-                    </form>
 
-                    <div class="panel-body">
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button class="btn btn-primary" onclick = "registrarMateria();return false;">
+                                <button class="btn btn-primary">
                                     Siguiente
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </form>    
+                    
+                </div>
             </div>
+
+</div>
+
+@endsection
