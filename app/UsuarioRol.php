@@ -14,10 +14,10 @@ class UsuarioRol extends Model
 
     public function usuario()
     {
-    	return $this->belongsTo('app/Usuario', 'usuario_idusuario', 'idusuario');
+    	return $this->belongsTo('App\Usuario', 'usuario_idusuario', 'idusuario');
     }
     public function rol()
     {
-    	return $this->belongsTo('app/Rol', 'rol_idrol', 'idrol');
+    	return $this->belongsTo('App\Rol', 'rol_idrol', 'idrol');
     }
 }

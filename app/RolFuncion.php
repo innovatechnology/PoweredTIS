@@ -14,10 +14,10 @@ class RolFuncion extends Model
 
     public function rol()
     {
-    	return $this->belongsTo('app/Rol', 'rol_idrol', 'idrol');
+    	return $this->belongsTo('App\Rol', 'rol_idrol', 'idrol');
     }
     public function funcion()
     {
-    	return $this->belongsTo('app/Funcion', 'funcion_idfuncion', 'idfuncion');
+    	return $this->belongsTo('App\Funcion', 'funcion_idfuncion', 'idfuncion');
     }
 }

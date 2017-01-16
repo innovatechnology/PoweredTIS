@@ -13,10 +13,10 @@ class Usuario extends Model
 
     public function sesion()
     {
-    	return $this->hasOne('app/Sesion', 'usuario_idusuario', 'idusuario');
+    	return $this->hasOne('App\Sesion', 'usuario_idusuario', 'idusuario');
     }
     public function usuarioRol()
     {
-    	return $this->hasMany('app/UsuarioRol', 'usuario_idusuario', 'idusuario');
+    	return $this->hasMany('App\UsuarioRol', 'usuario_idusuario', 'idusuario');
     }
 }

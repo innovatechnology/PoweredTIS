@@ -24,15 +24,13 @@ Route::get('roles/editar/{nombre}', 'RolFuncionController@editarRoles');
 Route::get('roles/crear', 'RolFuncionController@crearRoles');
 Route::post('roles/guardar', 'RolFuncionController@guardarRoles');
 
-Route::get('funciones', 'RolFuncionController@funciones');
-Route::get('funciones/editar/{nombre}', 'RolFuncionController@editarFunciones');
-Route::get('funciones/crear', 'RolFuncionController@crearFunciones');
-Route::post('funciones/guardar', 'RolFuncionController@guardarFunciones');
-
 Route::get('usuarios', 'RolFuncionController@usuarios');
 Route::get('usuarios/editar/{nombre_usuario}', 'RolFuncionController@editarUsuarios');
 Route::get('usuarios/eliminar/{login}', 'RolFuncionController@eliminarUsuarios');
 Route::post('usuarios/guardar', 'RolFuncionController@guardarUsuarios');
+
+Route::get('usuarios/perfil', 'RolFuncionController@editarPerfil');
+Route::post('usuarios/perfil/guardar', 'RolFuncionController@guardarPerfil');
 
 Route::resource('blog','BlogController');
 Route::get('/', function () {
@@ -40,12 +38,21 @@ Route::get('/', function () {
 });
 
 Route::get('blog', 'BlogController@index');
+/* Estas cosas estan de mas
 Route::get('blog/{slug}', 'BlogController@showPost');
 Route::get('blog/{id}/edit', 'BlogController@edit');
 Route::get('blog/store', 'BlogController@store');
+*/
 Route::get('/nombramiento', 'NombramientoController@index');
 Route::get('/seguimiento', 'SeguimientoController@index');
 Auth::routes();
+
+Route::get('/nombramiento/nuevo', 'NombramientoController@nuevo');
+Route::get('/nombramiento/ver/{docente}', 'NombramientoController@ver');
+Route::get('/nombramiento/editar/{docente}', 'NombramientoController@editar');
+Route::get('/nombramiento/descargar/{docente}', 'NombramientoController@descargar');
+Route::get('/nombramiento/eliminar/{docente}', 'NombramientoController@eliminar');
+Route::post('/nombramiento/guardar', 'NombramientoController@guardar');
 
 Route::post('/exito', function()
 	{return view('exito');
